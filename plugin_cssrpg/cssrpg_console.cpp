@@ -443,6 +443,8 @@ float CRPG_GlobalSettings::exp_vipescaped;
 unsigned int CRPG_GlobalSettings::credits_inc;
 unsigned int CRPG_GlobalSettings::credits_start;
 float CRPG_GlobalSettings::sale_percent;
+unsigned int CRPG_GlobalSettings::rest_port;
+char CRPG_GlobalSettings::rest_auth[128];
 
 void CRPG_GlobalSettings::InitSettings(void) {
 	struct item_type *type;
@@ -550,8 +552,12 @@ void CRPG_GlobalSettings::InitSettings(void) {
 	CRPG_Setting::CreateVar("exp_vipescaped", "0.35", "Experience multipled by the experience required and the team ratio given to the vip when the vip escapes", var_ufloat, &exp_vipescaped);
 
 	CRPG_Setting::CreateVar("credits_inc", "5", "Credits given to each new level", var_uint, &credits_inc);
-	CRPG_Setting::CreateVar("credits_start", "0", "Starting credits for Level 1", var_uint, &credits_start);
-	CRPG_Setting::CreateVar("sale_percent", "0.75", "Percentage of credits a player gets for selling an item", var_ufloat, &sale_percent);
+        CRPG_Setting::CreateVar("credits_start", "0", "Starting credits for Level 1", var_uint, &credits_start);
+        CRPG_Setting::CreateVar("sale_percent", "0.75", "Percentage of credits a player gets for selling an item", var_ufloat, &sale_percent);
+
+        /* REST API Settings */
+        CRPG_Setting::CreateVar("rest_port", "8080", "Port for REST API server", var_uint);
+        CRPG_Setting::CreateVar("rest_auth", "", "Authentication token for REST API", var_str);
 
 	return ;
 }

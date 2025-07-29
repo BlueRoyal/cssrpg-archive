@@ -12,6 +12,27 @@ just for giggles. The code also includes HL2 SDK, which has some modified header
 This version of the SDK was needed to build CSS:RPG against. This code is *ancient*, so don't expect to find anything
 profound here.
 
+## REST API
+
+The plugin now includes an optional HTTP server powered by the header only
+[`cpp-httplib`](https://github.com/yhirose/cpp-httplib). It allows remote tools to
+send plugin commands or query player statistics.
+
+### Configuration
+
+Set the following convars in your server configuration:
+
+```
+cssrpg_rest_port "8080"
+cssrpg_rest_auth "mysecret"
+```
+
+### Endpoints
+
+- `POST /command` – body contains a command string executed as if sent from the
+  server console.
+- `GET /players` – returns a JSON array describing connected players.
+
 ## License
 
 Half-Life 2 SDK is Copyright (c) Valve Corporation.
