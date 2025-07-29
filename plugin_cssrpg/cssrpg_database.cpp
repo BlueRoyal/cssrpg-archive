@@ -22,6 +22,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "sqlite3.h"
 
 #include "interface.h"
@@ -206,8 +207,8 @@ unsigned int CRPG_Database::Query(struct tbl_result **result, char *queryf, ...)
 		for(ii = 0;ii < ncol;ii++) {
 			str = result_array[(ncol*i)+(ii)];
 			if(str == NULL) str = "0";
-			(*result)->array[i][ii] = (char*)calloc(strlen(str)+1, sizeof(char));
-			strcpy((*result)->array[i][ii], str);
+                        (*result)->array[i][ii] = (char*)calloc(strlen(str) + 1, sizeof(char));
+                        strncpy((*result)->array[i][ii], str, strlen(str) + 1);
 		}
 	}
 

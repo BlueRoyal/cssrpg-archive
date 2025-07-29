@@ -17,6 +17,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "interface.h"
 #include "filesystem.h"
@@ -184,8 +185,8 @@ txtkey_t* CRPG_TextDB::IDtoKey(unsigned int id) {
 void CRPG_TextDB::LoadDefault(void) {
 	deflang = new CRPG_TextDB;
 
-	deflang->name = (char*)calloc(strlen("Default")+1, sizeof(char));
-	strcpy(deflang->name, "Default");
+    deflang->name = (char*)calloc(strlen("Default") + 1, sizeof(char));
+    strncpy(deflang->name, "Default", strlen("Default") + 1);
 
 	deflang->hidden = 1;
 	deflang->ll_add();
@@ -346,8 +347,8 @@ unsigned int CRPG_TextDB::assign_key(txtkey_t *key, const char *str) {
 	if((*key).s != NULL)
 		free((*key).s);
 
-	(*key).s = (char*)calloc(len+1, sizeof(char));
-	strcpy((*key).s, str);
+    (*key).s = (char*)calloc(len + 1, sizeof(char));
+    strncpy((*key).s, str, len + 1);
 
 	return 1;
 }
@@ -361,8 +362,8 @@ void CRPG_TextDB::parse_txtfile(KeyValues *kv, unsigned int phase) {
 	if(!phase) {
 		for(subkey = kv;subkey != NULL;subkey = subkey->GetNextTrueSubKey()) {
 			if(CRPG::istrcmp((char*)subkey->GetName(), "Language")) {
-				this->name = (char*)calloc(strlen(subkey->GetString("name"))+1, sizeof(char));
-				strcpy(this->name, subkey->GetString("name"));
+                this->name = (char*)calloc(strlen(subkey->GetString("name")) + 1, sizeof(char));
+                strncpy(this->name, subkey->GetString("name"), strlen(subkey->GetString("name")) + 1);
 			}
 			else if(CRPG::istrcmp((char*)subkey->GetName(), "Greeting")) {
 				ASSIGN(txt.greeting.msg1, "greeting");

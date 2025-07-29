@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright Â© 1996-2005, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -24,6 +24,7 @@
 */
 
 #include <stdio.h>
+#include <string.h>
 #include <time.h>
 
 #include "interface.h"
@@ -216,8 +217,8 @@ void* CPluginCSSRPG::InterfaceSearch(CreateInterfaceFn factory, char *name) {
 		return iface;
 
 	len = strlen(name);
-	iface_str = (char*)calloc(len+1, sizeof(char));
-	strcpy(iface_str, name);
+	iface_str = (char*)calloc(len + 1, sizeof(char));
+        strncpy(iface_str, name, len + 1);
 
 	if(len > 3) {
 		check = isdigit(*(iface_str+(len-3))) ? 1 : 0;

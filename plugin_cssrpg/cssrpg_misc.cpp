@@ -694,8 +694,10 @@ unsigned int CRPG_Utils::traverse_dir(struct file_info &file, char *path, unsign
 			if(stat(filepath, &buf))
 				return 0;
 
-			strncpy(file.name, finfo->d_name, MAX_PATH-1);
-			strcpy(file.fullpath, filepath);
+                        strncpy(file.name, finfo->d_name, MAX_PATH - 1);
+                        file.name[MAX_PATH - 1] = '\0';
+                        strncpy(file.fullpath, filepath, MAX_PATH - 1);
+                        file.fullpath[MAX_PATH - 1] = '\0';
 
 			if(!(buf.st_mode & S_IFDIR)) {
 				file.type = file_normal;
