@@ -42,6 +42,7 @@ include_directories(
 file(GLOB PLUGIN_SOURCES
     plugin_cssrpg/*.cpp
     plugin_cssrpg/items/*.cpp
+    plugin_cssrpg/rest/*.cpp
 )
 
 find_package(Threads REQUIRED)
