@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
 project(cssrpg)
 
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 option(BUILD_WINDOWS "Build Windows plugin" OFF)
 option(BUILD_LINUX "Build Linux plugin" ON)
 set(HL2SDK_ROOT "hl2sdk/hl2sdk" CACHE PATH "Path to extracted HL2 SDK")
@@ -41,8 +44,10 @@ file(GLOB PLUGIN_SOURCES
     plugin_cssrpg/items/*.cpp
 )
 
+find_package(Threads REQUIRED)
+
 add_library(cssrpg MODULE ${PLUGIN_SOURCES})
 
-target_link_libraries(cssrpg ${TIER0_LIB} ${VSTDLIB_LIB} ${SQLITE_LIB})
+target_link_libraries(cssrpg ${TIER0_LIB} ${VSTDLIB_LIB} ${SQLITE_LIB} Threads::Threads)
 
 
