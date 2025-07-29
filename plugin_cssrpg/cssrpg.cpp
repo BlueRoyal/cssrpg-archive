@@ -16,6 +16,7 @@
 */
 
 #include <stdio.h>
+#include <string.h>
 #include <time.h>
 
 #include "interface.h"
@@ -84,85 +85,109 @@ void CRPG::init_item_types(void) {
 		item_types[i].index = i;
 
 	/* Regen */
-	strcpy(item_types[ITEM_REGEN].name, "Regeneration");
-	strcpy(item_types[ITEM_REGEN].shortname, "regen");
+        strncpy(item_types[ITEM_REGEN].name, "Regeneration", sizeof(item_types[ITEM_REGEN].name) - 1);
+        item_types[ITEM_REGEN].name[sizeof(item_types[ITEM_REGEN].name) - 1] = '\0';
+        strncpy(item_types[ITEM_REGEN].shortname, "regen", sizeof(item_types[ITEM_REGEN].shortname) - 1);
+        item_types[ITEM_REGEN].shortname[sizeof(item_types[ITEM_REGEN].shortname) - 1] = '\0';
 	item_types[ITEM_REGEN].maxlevelbarrier = 15;
 	item_types[ITEM_REGEN].buy_item = CRPGI_Regen::BuyItem;
 	item_types[ITEM_REGEN].sell_item = CRPGI_Regen::SellItem;
 
 	/* HBonus */
-	strcpy(item_types[ITEM_HBONUS].name, "Health+");
-	strcpy(item_types[ITEM_HBONUS].shortname, "hbonus");
+        strncpy(item_types[ITEM_HBONUS].name, "Health+", sizeof(item_types[ITEM_HBONUS].name) - 1);
+        item_types[ITEM_HBONUS].name[sizeof(item_types[ITEM_HBONUS].name) - 1] = '\0';
+        strncpy(item_types[ITEM_HBONUS].shortname, "hbonus", sizeof(item_types[ITEM_HBONUS].shortname) - 1);
+        item_types[ITEM_HBONUS].shortname[sizeof(item_types[ITEM_HBONUS].shortname) - 1] = '\0';
 	item_types[ITEM_HBONUS].maxlevelbarrier = 16;
 	item_types[ITEM_HBONUS].buy_item = CRPGI_HBonus::BuyItem;
 	item_types[ITEM_HBONUS].sell_item = CRPGI_HBonus::SellItem;
 
 	/* Resup */
-	strcpy(item_types[ITEM_RESUP].name, "Resupply");
-	strcpy(item_types[ITEM_RESUP].shortname, "resup");
+        strncpy(item_types[ITEM_RESUP].name, "Resupply", sizeof(item_types[ITEM_RESUP].name) - 1);
+        item_types[ITEM_RESUP].name[sizeof(item_types[ITEM_RESUP].name) - 1] = '\0';
+        strncpy(item_types[ITEM_RESUP].shortname, "resup", sizeof(item_types[ITEM_RESUP].shortname) - 1);
+        item_types[ITEM_RESUP].shortname[sizeof(item_types[ITEM_RESUP].shortname) - 1] = '\0';
 	item_types[ITEM_RESUP].maxlevelbarrier = 20;
 	item_types[ITEM_RESUP].buy_item = CRPGI_Resup::BuyItem;
 	item_types[ITEM_RESUP].sell_item = CRPGI_Resup::SellItem;
 
 	/* Vamp */
-	strcpy(item_types[ITEM_VAMP].name, "Vampire");
-	strcpy(item_types[ITEM_VAMP].shortname, "vamp");
+        strncpy(item_types[ITEM_VAMP].name, "Vampire", sizeof(item_types[ITEM_VAMP].name) - 1);
+        item_types[ITEM_VAMP].name[sizeof(item_types[ITEM_VAMP].name) - 1] = '\0';
+        strncpy(item_types[ITEM_VAMP].shortname, "vamp", sizeof(item_types[ITEM_VAMP].shortname) - 1);
+        item_types[ITEM_VAMP].shortname[sizeof(item_types[ITEM_VAMP].shortname) - 1] = '\0';
 	item_types[ITEM_VAMP].maxlevelbarrier = 15;
 	item_types[ITEM_VAMP].buy_item = CRPGI_Vamp::BuyItem;
 	item_types[ITEM_VAMP].sell_item = CRPGI_Vamp::SellItem;
 
 	/* Stealth */
-	strcpy(item_types[ITEM_STEALTH].name, "Stealth");
-	strcpy(item_types[ITEM_STEALTH].shortname, "stealth");
+        strncpy(item_types[ITEM_STEALTH].name, "Stealth", sizeof(item_types[ITEM_STEALTH].name) - 1);
+        item_types[ITEM_STEALTH].name[sizeof(item_types[ITEM_STEALTH].name) - 1] = '\0';
+        strncpy(item_types[ITEM_STEALTH].shortname, "stealth", sizeof(item_types[ITEM_STEALTH].shortname) - 1);
+        item_types[ITEM_STEALTH].shortname[sizeof(item_types[ITEM_STEALTH].shortname) - 1] = '\0';
 	item_types[ITEM_STEALTH].maxlevelbarrier = 5;
 	item_types[ITEM_STEALTH].buy_item = CRPGI_Stealth::BuyItem;
 	item_types[ITEM_STEALTH].sell_item = CRPGI_Stealth::SellItem;
 
 	/* LJump */
-	strcpy(item_types[ITEM_LJUMP].name, "LongJump");
-	strcpy(item_types[ITEM_LJUMP].shortname, "ljump");
+        strncpy(item_types[ITEM_LJUMP].name, "LongJump", sizeof(item_types[ITEM_LJUMP].name) - 1);
+        item_types[ITEM_LJUMP].name[sizeof(item_types[ITEM_LJUMP].name) - 1] = '\0';
+        strncpy(item_types[ITEM_LJUMP].shortname, "ljump", sizeof(item_types[ITEM_LJUMP].shortname) - 1);
+        item_types[ITEM_LJUMP].shortname[sizeof(item_types[ITEM_LJUMP].shortname) - 1] = '\0';
 	item_types[ITEM_LJUMP].maxlevelbarrier = 10;
 	item_types[ITEM_LJUMP].buy_item = CRPGI_LJump::BuyItem;
 	item_types[ITEM_LJUMP].sell_item = CRPGI_LJump::SellItem;
 
 	/* FNade */
-	strcpy(item_types[ITEM_FNADE].name, "FireGrenade");
-	strcpy(item_types[ITEM_FNADE].shortname, "fnade");
+        strncpy(item_types[ITEM_FNADE].name, "FireGrenade", sizeof(item_types[ITEM_FNADE].name) - 1);
+        item_types[ITEM_FNADE].name[sizeof(item_types[ITEM_FNADE].name) - 1] = '\0';
+        strncpy(item_types[ITEM_FNADE].shortname, "fnade", sizeof(item_types[ITEM_FNADE].shortname) - 1);
+        item_types[ITEM_FNADE].shortname[sizeof(item_types[ITEM_FNADE].shortname) - 1] = '\0';
 	item_types[ITEM_FNADE].maxlevelbarrier = 10;
 	item_types[ITEM_FNADE].buy_item = CRPGI_FNade::BuyItem;
 	item_types[ITEM_FNADE].sell_item = CRPGI_FNade::SellItem;
 
 	/* IceStab */
-	strcpy(item_types[ITEM_ICESTAB].name, "IceStab");
-	strcpy(item_types[ITEM_ICESTAB].shortname, "icestab");
+        strncpy(item_types[ITEM_ICESTAB].name, "IceStab", sizeof(item_types[ITEM_ICESTAB].name) - 1);
+        item_types[ITEM_ICESTAB].name[sizeof(item_types[ITEM_ICESTAB].name) - 1] = '\0';
+        strncpy(item_types[ITEM_ICESTAB].shortname, "icestab", sizeof(item_types[ITEM_ICESTAB].shortname) - 1);
+        item_types[ITEM_ICESTAB].shortname[sizeof(item_types[ITEM_ICESTAB].shortname) - 1] = '\0';
 	item_types[ITEM_ICESTAB].maxlevelbarrier = 10;
 	item_types[ITEM_ICESTAB].buy_item = CRPGI_IceStab::BuyItem;
 	item_types[ITEM_ICESTAB].sell_item = CRPGI_IceStab::SellItem;
 
 	/* FPistol */
-	strcpy(item_types[ITEM_FPISTOL].name, "FrostPistol");
-	strcpy(item_types[ITEM_FPISTOL].shortname, "fpistol");
+        strncpy(item_types[ITEM_FPISTOL].name, "FrostPistol", sizeof(item_types[ITEM_FPISTOL].name) - 1);
+        item_types[ITEM_FPISTOL].name[sizeof(item_types[ITEM_FPISTOL].name) - 1] = '\0';
+        strncpy(item_types[ITEM_FPISTOL].shortname, "fpistol", sizeof(item_types[ITEM_FPISTOL].shortname) - 1);
+        item_types[ITEM_FPISTOL].shortname[sizeof(item_types[ITEM_FPISTOL].shortname) - 1] = '\0';
 	item_types[ITEM_FPISTOL].maxlevelbarrier = 15;
 	item_types[ITEM_FPISTOL].buy_item = CRPGI_FPistol::BuyItem;
 	item_types[ITEM_FPISTOL].sell_item = CRPGI_FPistol::SellItem;
 
 	/* Impulse */
-	strcpy(item_types[ITEM_IMPULSE].name, "Impulse");
-	strcpy(item_types[ITEM_IMPULSE].shortname, "impulse");
+        strncpy(item_types[ITEM_IMPULSE].name, "Impulse", sizeof(item_types[ITEM_IMPULSE].name) - 1);
+        item_types[ITEM_IMPULSE].name[sizeof(item_types[ITEM_IMPULSE].name) - 1] = '\0';
+        strncpy(item_types[ITEM_IMPULSE].shortname, "impulse", sizeof(item_types[ITEM_IMPULSE].shortname) - 1);
+        item_types[ITEM_IMPULSE].shortname[sizeof(item_types[ITEM_IMPULSE].shortname) - 1] = '\0';
 	item_types[ITEM_IMPULSE].maxlevelbarrier = 10;
 	item_types[ITEM_IMPULSE].buy_item = CRPGI_Impulse::BuyItem;
 	item_types[ITEM_IMPULSE].sell_item = CRPGI_Impulse::SellItem;
 
 	/* Denial */
-	strcpy(item_types[ITEM_DENIAL].name, "Denial");
-	strcpy(item_types[ITEM_DENIAL].shortname, "denial");
+        strncpy(item_types[ITEM_DENIAL].name, "Denial", sizeof(item_types[ITEM_DENIAL].name) - 1);
+        item_types[ITEM_DENIAL].name[sizeof(item_types[ITEM_DENIAL].name) - 1] = '\0';
+        strncpy(item_types[ITEM_DENIAL].shortname, "denial", sizeof(item_types[ITEM_DENIAL].shortname) - 1);
+        item_types[ITEM_DENIAL].shortname[sizeof(item_types[ITEM_DENIAL].shortname) - 1] = '\0';
 	item_types[ITEM_DENIAL].maxlevelbarrier = 3;
 	item_types[ITEM_DENIAL].buy_item = CRPGI_Denial::BuyItem;
 	item_types[ITEM_DENIAL].sell_item = CRPGI_Denial::SellItem;
 
 	/* Medic */
-	strcpy(item_types[ITEM_MEDIC].name, "Medic");
-	strcpy(item_types[ITEM_MEDIC].shortname, "medic");
+        strncpy(item_types[ITEM_MEDIC].name, "Medic", sizeof(item_types[ITEM_MEDIC].name) - 1);
+        item_types[ITEM_MEDIC].name[sizeof(item_types[ITEM_MEDIC].name) - 1] = '\0';
+        strncpy(item_types[ITEM_MEDIC].shortname, "medic", sizeof(item_types[ITEM_MEDIC].shortname) - 1);
+        item_types[ITEM_MEDIC].shortname[sizeof(item_types[ITEM_MEDIC].shortname) - 1] = '\0';
 	item_types[ITEM_MEDIC].maxlevelbarrier = 20;
 	item_types[ITEM_MEDIC].buy_item = CRPGI_Medic::BuyItem;
 	item_types[ITEM_MEDIC].sell_item = CRPGI_Medic::SellItem;

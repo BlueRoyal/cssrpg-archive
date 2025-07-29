@@ -16,6 +16,7 @@
 */
 
 #include <stdlib.h>
+#include <string.h>
 
 #include "interface.h"
 #include "filesystem.h"
@@ -46,8 +47,8 @@ void CRPG_FileVar::set_value(char *val) {
 	if(val == NULL)
 		val = "0";
 
-	value.s = (char*)calloc(strlen(val)+1, sizeof(char));
-	strcpy(value.s, val);
+    value.s = (char*)calloc(strlen(val) + 1, sizeof(char));
+    strncpy(value.s, val, strlen(val) + 1);
 	
 	value.l = atol(val);
 	value.ul = CRPG::atoul(val);
@@ -136,8 +137,8 @@ CRPG_FileVar::CRPG_FileVar(char *n, char *dv, char *p): path(NULL), key(NULL), p
 
 	WARN_IF((n == NULL) || (p == NULL) || !strlen(p), return);
 
-	name = (char*)calloc(strlen(n)+1, sizeof(char));
-	strcpy(name, n);
+    name = (char*)calloc(strlen(n) + 1, sizeof(char));
+    strncpy(name, n, strlen(n) + 1);
 
 	/* Set the default value for this file variable */
 	if((dv != NULL) && (dvlen = strlen(dv))) {
@@ -159,8 +160,8 @@ CRPG_FileVar::CRPG_FileVar(char *n, char *dv, char *p): path(NULL), key(NULL), p
 
 	WARN_IF(i <= 1, return);
 
-	key = (char*)calloc(pathlen-i+1, sizeof(char));
-	strcpy(key, p+i);
+    key = (char*)calloc(pathlen - i + 1, sizeof(char));
+    strncpy(key, p + i, pathlen - i + 1);
 
 	pathlen = i-1;
 	path = (char*)calloc(pathlen+1, sizeof(char));
