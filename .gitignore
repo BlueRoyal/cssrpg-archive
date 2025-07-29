@@ -1,0 +1,20 @@
+# Ignore build outputs
+/build/
+
+# Ignore extracted HL2 SDK contents
+/hl2sdk/hl2sdk/
+
+# Ignore common compiled binaries
+*.so
+*.dll
+*.lib
+*.a
+*.o
+*.obj
+
+# Ignore CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
