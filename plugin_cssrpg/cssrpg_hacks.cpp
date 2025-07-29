@@ -25,6 +25,7 @@
 */
 
 #include <stdio.h>
+#include <string.h>
 
 #ifdef WIN32
 	#define WIN32_LEAN_AND_MEAN
@@ -519,7 +520,7 @@ long CRPG_ExternProps::FindNetProp(ServerClass *sc, char *path) {
 
 	WARN_IF(name == NULL, return -1);
 
-	strcpy(name, path);
+    strncpy(name, path, pathlen + 1);
 	for(i = 0;i < pathlen;i++) {
 		if(name[i] == '/')
 			name[i] = '\0';

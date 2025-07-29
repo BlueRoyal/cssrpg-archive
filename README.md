@@ -12,6 +12,27 @@ just for giggles. The code also includes HL2 SDK, which has some modified header
 This version of the SDK was needed to build CSS:RPG against. This code is *ancient*, so don't expect to find anything
 profound here.
 
+## REST API
+
+The plugin now includes an optional HTTP server powered by the header only
+[`cpp-httplib`](https://github.com/yhirose/cpp-httplib). It allows remote tools to
+send plugin commands or query player statistics.
+
+### Configuration
+
+Set the following convars in your server configuration:
+
+```
+cssrpg_rest_port "8080"
+cssrpg_rest_auth "mysecret"
+```
+
+### Endpoints
+
+- `POST /command` – body contains a command string executed as if sent from the
+  server console.
+- `GET /players` – returns a JSON array describing connected players.
+
 ## License
 
 Half-Life 2 SDK is Copyright (c) Valve Corporation.
@@ -25,6 +46,30 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-## Building
 
-Run `make` inside `plugin_cssrpg` to build the plugin and the bundled SQLite stub.
+## Building from Source
+
+1. Extract the bundled HL2 SDK archive:
+
+   ```
+   tar -xzf hl2sdk/hl2sdk.tar.gz -C hl2sdk
+   ```
+
+2. Create a build directory and run CMake. Enable `BUILD_LINUX` or `BUILD_WINDOWS` as needed and point `HL2SDK_ROOT` to the extracted SDK:
+
+   ```
+   mkdir build
+   cd build
+   cmake .. -DBUILD_LINUX=ON
+   cmake --build .
+   ```
+
+   On Windows use:
+
+   ```
+   cmake .. -DBUILD_WINDOWS=ON
+   cmake --build . --config Release
+   ```
+
+The plugin binary will be generated inside the `build` folder.
+

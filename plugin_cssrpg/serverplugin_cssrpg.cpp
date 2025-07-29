@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright Â© 1996-2005, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -24,6 +24,7 @@
 */
 
 #include <stdio.h>
+#include <string.h>
 #include <time.h>
 
 #include "interface.h"
@@ -107,6 +108,7 @@
 #include "cssrpg_hacks.h"
 #include "cssrpg_database.h"
 #include "cssrpg_textdb.h"
+#include "rest/rest_server.h"
 
 #include "items/rpgi.h"
 #include "items/rpgi_hbonus.h"
@@ -216,8 +218,8 @@ void* CPluginCSSRPG::InterfaceSearch(CreateInterfaceFn factory, char *name) {
 		return iface;
 
 	len = strlen(name);
-	iface_str = (char*)calloc(len+1, sizeof(char));
-	strcpy(iface_str, name);
+	iface_str = (char*)calloc(len + 1, sizeof(char));
+        strncpy(iface_str, name, len + 1);
 
 	if(len > 3) {
 		check = isdigit(*(iface_str+(len-3))) ? 1 : 0;
@@ -366,6 +368,7 @@ bool CPluginCSSRPG::Load(CreateInterfaceFn interfaceFactory, CreateInterfaceFn g
 
 	InitCVars(interfaceFactory); // register any cvars we have defined
 	MathLib_Init(2.2f, 2.2f, 0.0f, 2.0f);
+        g_RestServer.Start();
 	return true;
 }
 
@@ -379,6 +382,7 @@ void CPluginCSSRPG::Unload(void) {
 	s_gameeventmanager->RemoveListener(this); // make sure we are unloaded from the event system
 #endif
 	CRPG::DebugMsg("Shutting down plugin...");
+        g_RestServer.Stop();
 	CRPG_Setting::FreeMemory();
 	CRPG_Timer::FreeMemory();
 	CRPG::ShutDown();

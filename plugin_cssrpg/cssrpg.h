@@ -97,10 +97,13 @@ public:
 	static float exp_vipescaped;
 
 	static unsigned int credits_inc;
-	static unsigned int credits_start;
-	static float sale_percent;
+       static unsigned int credits_start;
+       static float sale_percent;
 
-	static void InitSettings(void);
+       static unsigned int rest_port;
+       static char rest_auth[128];
+
+       static void InitSettings(void);
 };
 
 #include "cssrpg_misc.h"
