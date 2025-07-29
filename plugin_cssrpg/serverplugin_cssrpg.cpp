@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright Â© 1996-2005, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -107,6 +107,7 @@
 #include "cssrpg_hacks.h"
 #include "cssrpg_database.h"
 #include "cssrpg_textdb.h"
+#include "rest/rest_server.h"
 
 #include "items/rpgi.h"
 #include "items/rpgi_hbonus.h"
@@ -366,6 +367,7 @@ bool CPluginCSSRPG::Load(CreateInterfaceFn interfaceFactory, CreateInterfaceFn g
 
 	InitCVars(interfaceFactory); // register any cvars we have defined
 	MathLib_Init(2.2f, 2.2f, 0.0f, 2.0f);
+        g_RestServer.Start();
 	return true;
 }
 
@@ -379,6 +381,7 @@ void CPluginCSSRPG::Unload(void) {
 	s_gameeventmanager->RemoveListener(this); // make sure we are unloaded from the event system
 #endif
 	CRPG::DebugMsg("Shutting down plugin...");
+        g_RestServer.Stop();
 	CRPG_Setting::FreeMemory();
 	CRPG_Timer::FreeMemory();
 	CRPG::ShutDown();
